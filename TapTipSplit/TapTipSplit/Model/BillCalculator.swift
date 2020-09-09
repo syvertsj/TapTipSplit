@@ -25,7 +25,7 @@ struct BillCalculator {
         billResult.billTotal = String(self.billTotal)
         billResult.split = String(self.split)
         billResult.tip   = String(Int(self.tipPercent))
-        billResult.totalPerPerson = String(billTotal / Float(split))
+        billResult.totalPerPerson = String(format: "%.2f", billTotal / Float(split)) 
         
         return billResult
     }
