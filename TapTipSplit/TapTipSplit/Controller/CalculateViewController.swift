@@ -24,18 +24,24 @@ class CalculateViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        billTextField.delegate = self as UITextFieldDelegate
+                
+        billTextField.delegate = self
         
         splitNumberLabel.text = String(splitNumber)
         tipPercentLabel.text = "\(Int(tipPercentSlider.value.rounded())) %"
         totalPerPersonLabel.text = "0.0"
+        billDetailLabel.isHidden = true
     }
-                    
+          
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        billTextField.resignFirstResponder()
+    }
+    
     @IBAction func splitStepperAction(_ sender: UIStepper) {
         
         splitNumber = Int(sender.value)
         splitNumberLabel.text = String(splitNumber)
+        billTextField.resignFirstResponder()
     }
     
     @IBAction func calculateAction(_ sender: UIButton) {
@@ -48,17 +54,23 @@ class CalculateViewController: UIViewController {
 
         totalPerPersonLabel.text = billCalculator?.billCalculation().totalPerPerson
         billDetailLabel.text = billCalculator?.billCalculation().billDetailText()
+        billDetailLabel.isHidden = false
     }
         
     @IBAction func sliderAction(_ sender: Any) {
         
         tipPercentLabel.text = "\(Int(tipPercentSlider.value.rounded())) %"
+        billTextField.resignFirstResponder()
     }
 }
 
+// MARK: - UITextFieldDelegate methods
+
 extension CalculateViewController: UITextFieldDelegate {
     
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+    func textFieldShouldClear(_ textField: UITextField) -> Bool {
+        totalPerPersonLabel.text = "0.0"
+        billDetailLabel.isHidden = true
         return true
     }
 }
