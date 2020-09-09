@@ -28,6 +28,7 @@ class CalculateViewController: UIViewController {
         billTextField.delegate = self
         
         billTextField.clearButtonMode = UITextField.ViewMode.always
+        billTextField.attributedPlaceholder = NSAttributedString(string:"- Enter Bill -", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
         
         splitNumberLabel.text = String(splitNumber)
         tipPercentLabel.text = "\(Int(tipPercentSlider.value.rounded())) %"

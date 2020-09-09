@@ -22,7 +22,7 @@ struct BillCalculator {
         
         var billResult = BillResult()
         
-        billResult.billTotal = String(self.billTotal)
+        billResult.billTotal = String(format: "%.2f", self.billTotal)
         billResult.split = String(self.split)
         billResult.tip   = String(Int(self.tipPercent))
         billResult.totalPerPerson = String(format: "%.2f", billTotal / Float(split))
