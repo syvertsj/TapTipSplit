@@ -1,2 +1,2 @@
 # TapTipSplit
-tip/gratuity split app 
+iOS tip/gratuity split app 
