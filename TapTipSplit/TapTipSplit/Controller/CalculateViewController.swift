@@ -27,6 +27,8 @@ class CalculateViewController: UIViewController {
                 
         billTextField.delegate = self
         
+        billTextField.clearButtonMode = UITextField.ViewMode.always
+        
         splitNumberLabel.text = String(splitNumber)
         tipPercentLabel.text = "\(Int(tipPercentSlider.value.rounded())) %"
         totalPerPersonLabel.text = "0.0"
