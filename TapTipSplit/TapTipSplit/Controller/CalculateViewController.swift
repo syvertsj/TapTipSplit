@@ -34,6 +34,9 @@ class CalculateViewController: UIViewController {
         tipPercentLabel.text = "\(Int(tipPercentSlider.value.rounded())) %"
         totalPerPersonLabel.text = "0.0"
         billDetailLabel.isHidden = true
+        
+        tipPercentSlider.value = (UserDefaults.standard.value(forKey: "tipPercentage") != nil) ? UserDefaults.standard.float(forKey: "tipPercentage") : 15
+        tipPercentLabel.text = "\(Int(tipPercentSlider.value.rounded())) %"
     }
           
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -52,6 +55,8 @@ class CalculateViewController: UIViewController {
         guard let billAmount = Float(billTextField.text!) else { return }
                 
         let tipPercentage = tipPercentSlider.value.rounded()
+        
+        UserDefaults.standard.set(tipPercentage, forKey: "tipPercentage")
         
         billCalculator = BillCalculator(bill: billAmount, tipPercent: tipPercentage, split: splitNumber)
 
